@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<header class="header">
+		<nav>
+			<ul>
+				<li><a href="./index.html">Курсы валют</a></li>
+				<li><a href="./converter.html">Конвертер</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<h1>Конвертер</h1>
+
+
+	</main>
+
+	<script>
+		// let result
+
+		// fetch("https://www.cbr-xml-daily.ru/daily_json.js")
+		// 	.then(res => res.json())
+		// 	.then(res => result = res)
+
+		const get = async () => {
+			let res = await fetch("https://www.cbr-xml-daily.ru/daily_json.js")
+			res = await res.json()
+
+			console.log(res.Valute);
+		}
+
+		get()
+
+	</script>
+</body>
+
+</html>
