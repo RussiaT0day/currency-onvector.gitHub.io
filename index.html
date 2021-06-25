@@ -42,22 +42,39 @@
 				const moneyName = e.target.previousSibling.previousSibling;
 				//Создание или добавление в локальное хранилище
 				if (localStorage.getItem('money') === null || localStorage.getItem('money').length === 0) {
-					let name = [moneyName.id]
+					let name = [moneyName.dataset.id]
 					localStorage.setItem(`money`, JSON.stringify(name));
+					getValue()
 				} else {
 					let arr = localStorage.getItem('money')
-					arr = JSON.parse(arr)
-					arr.push(moneyName.id)
-
-					// createBlock(valute,favoritesDiv,'',false)
-
-					localStorage.setItem(`money`, JSON.stringify(arr));
+					arr = JSON.parse(arr) 
+					if (arr.indexOf(moneyName.dataset.id) == -1) {
+						arr.push(moneyName.dataset.id)
+						getValue()
+						localStorage.setItem(`money`, JSON.stringify(arr));
+					}
 				}
 			}
 		})
+		//Удаление 
+		if (mainFavorites) {
+			mainFavorites.addEventListener('click', (e) => {
+				const moneyName = e.target.previousSibling.previousSibling;
 
+				if (e.target.className === `main-valute-container-delete`) {
+					let arr = localStorage.getItem('money')
+					arr = JSON.parse(arr)
+					if (arr.indexOf(moneyName.dataset.id) !== -1) {
+						arr = arr.filter( el => el !== moneyName.dataset.id )
+						console.log(arr);
+						localStorage.setItem('money', JSON.stringify(arr))
+						getValue()
+					}
 
+				}
 
+			})
+		}
 
 
 
@@ -75,28 +92,27 @@
 
 
 			if (favoriteValute) {
+				favoritesDiv.innerHTML = ''
+				container.innerHTML = ''
 				for (let index = 0;index < favoriteValute.length;index++) {
 					if (res.Valute.hasOwnProperty(favoriteValute[index])) {
 						let valute = res.Valute[favoriteValute[index]] // Вывод обьекта валюты в отдельную переменную 
 						console.log(valute);
+
 						if (favoritesDiv) {
-							createBlock(valute, favoritesDiv, '', true, 'main-valute-container-delete', 'удалить')
+
+							createBlock(valute, favoritesDiv, favoriteValute[index], true, 'main-valute-container-delete', 'удалить')
 						}
 					}
 				}
 			}
-			
+
 			for (const [key, value] of Object.entries(res.Valute)) {
 				if (container) {
 					//Вывод всей Валюты
 					createBlock(value, container, key, true)
-
 				}
 			}
-			// res.Valute.forEach(el => {
-			// 	console.log(el);
-
-			// });
 		}
 		getValue()
 
@@ -108,7 +124,7 @@
 
 			const valuteName = document.createElement('div')
 			valuteName.className = `main-valute-container-name `;
-			valuteName.id = `${key}`;
+			valuteName.dataset.id = `${key}`;
 
 			valuteName.innerText = `${dataObject.Name}`;
 
