@@ -7,8 +7,11 @@
 }
 
 .header{
+	min-width: 320px;
+
 	background-color: black;
 	padding: 10px 5px;
+	width: 100%;
 }
 .header nav ul{
 	display: flex;
@@ -77,6 +80,8 @@
 
 
 .main-title{
+	min-width: 320px;
+
 	margin-top: 30px;
 	user-select:none;
 	text-align: center;
@@ -84,6 +89,7 @@
 
 .main-valute-container{
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
 	width: 50%;
@@ -98,16 +104,13 @@
 	background: #e2e2e2;
 }
 
-.main-valute-container {
-	min-width: 576px;
-}
 .main-valute-container-name {
 	width: 70%;
 }
 .main-valute-container-price{
 	align-items: stretch;
-
 }
+
 
 
 
@@ -151,9 +154,9 @@
 
 
 .main-converter{
-	min-width: 740px;
 	width: 50%;
 	margin: 30px auto 0 auto;
+	flex-wrap: wrap;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -161,12 +164,11 @@
 	border: 2px solid black;
 	border-radius: 3px;
 	transition: 0.3s;
-
-	}
+}
 
 .main-converter:hover{
 	background: #f2f2f2;
-
+	
 }
 .main-converter-value {
 	font-size: 16px;
@@ -191,5 +193,18 @@
 }
 .main-converter-count-text{	
 	margin-right: 5px;
+	
+}
+
+@media screen and (max-width: 1200px) {
+	.main-converter,
+	.main-valute-container{
+		width: 90%;
+		min-width: 320px;
+	}
+	.main-converter-box{
+		margin-bottom: 10px;
+	}
+
 
 }
