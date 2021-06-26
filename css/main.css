@@ -9,6 +9,7 @@
 .header{
 	background-color: black;
 	padding: 10px 5px;
+	width: 100%;
 }
 .header nav ul{
 	display: flex;
