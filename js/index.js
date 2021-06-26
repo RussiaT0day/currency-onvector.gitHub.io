@@ -67,7 +67,7 @@ const getValue = async () => {
 		}
 	}
 
-	if ( favoriteValute.length !== 0 ) {
+	if ( favoriteValute ) {
 		for (let i = 0;i < favoriteValute.length;i++) {
 			if (res.Valute[favoriteValute[i]]) {
 				delete res.Valute[favoriteValute[i]]
