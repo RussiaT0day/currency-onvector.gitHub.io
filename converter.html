@@ -6,6 +6,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
@@ -22,61 +28,25 @@
 			<h1>Конвертер</h1>
 		</div>
 		<div class="main-converter">
-			<select class="main-converter-value">
-
-			</select>
+			<div class="main-converter-box">
+				<select class="main-converter-value">
+				</select>
+			</div>
 			<div class="main-converter-count">
 				<div class="main-converter-count-text">
-					<p>количество иностраной валюты</p>
+					<p>количество валюты </p>
 				</div>
-				<input value="0" type="number">
-				<button class="btn-converter">перевести</button>
+				<div class="main-converter-count-form">
+					<input value="0" min='0' max='1000000' type="number">
+					<button class="btn-converter">перевести</button>
+				</div>
 			</div>
 			<div class="main-converter-count-result">
-				= 0 рублей
+				= 0.00 ₽
 			</div>
-
-
 		</div>
-
 	</main>
-
-	<script>
-		let mainConverter = document.querySelector('.main-converter')
-
-		async function converter() {
-			const valueDiv = document.querySelector('.main-converter-value')
-			let res = await fetch("https://www.cbr-xml-daily.ru/daily_json.js")
-			res = await res.json()
-			console.log(res);
-
-			for (const [key, value] of Object.entries(res.Valute)) {
-				let opiton = document.createElement('option')
-				opiton.innerText = value.Name
-				opiton.value = value.Value
-				valueDiv.appendChild(opiton)
-			}
-			mainConverter.addEventListener('click', (e) => {
-				if (e.target.className === 'btn-converter') {
-					let input = document.querySelector('.main-converter-count input');
-					let valueDiv = document.querySelector('.main-converter-value');
-					let resultDiv = document.querySelector('.main-converter-count-result');
-					
-					console.log(valueDiv.value);
-					let result = valueDiv.value * input.value
-					result = result.toFixed(2)
-					resultDiv.innerText = `= ${result} рублей`
-					
-
-
-
-				}
-			})
-		}
-
-		converter()
-
-	</script>
+	<script src="./js/converter.js"></script>
 </body>
 
 </html>
